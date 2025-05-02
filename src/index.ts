@@ -23,7 +23,7 @@ const server = new McpServer({
 server.tool(
   "places_text_search",
   "Text search for places using Google Places API",
-  PlacesTextSearchParams,
+  PlacesTextSearchParams.shape,
   async (args, extra) => {
     const { fields, ...searchOptions } = args
 

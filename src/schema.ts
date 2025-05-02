@@ -86,7 +86,7 @@ export const EvOptions = z.object({
 })
 
 // Define the PlacesTextSearchParams schema
-export const PlacesTextSearchParams = {
+export const PlacesTextSearchParams = z.object({
   textQuery: z
     .string()
     .min(1)
@@ -193,4 +193,4 @@ export const PlacesTextSearchParams = {
     .describe(
       "List of fields to return in the response (passed as $fields parameter or X-Goog-FieldMask header)"
     ),
-}
+})
