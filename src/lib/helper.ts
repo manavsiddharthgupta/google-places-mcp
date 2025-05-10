@@ -1,4 +1,3 @@
-// googlePlacesApi.ts
 import axios from "axios"
 import { PlacesTextSearchParams } from "./types.js"
 

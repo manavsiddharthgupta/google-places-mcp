@@ -16,7 +16,6 @@ Create a `.env` file in the root directory with these variables:
 
 ```env
 GOOGLE_MAPS_API_KEY=your_api_key_here
-TRANSPORT_TYPE=stdio
 PORT=3000
 ```
 
@@ -32,17 +31,12 @@ npm install
 npm run dev
 ```
 
-3. Build for production:
-```bash
-npm run build
-```
 
 ## Transport Options
 
 The server supports two transport methods:
 
-1. **stdio** (default): Uses standard input/output for communication
-2. **SSE (Server-Sent Events)**: Uses HTTP with Server-Sent Events for real-time communication
+1. **SSE (Server-Sent Events)**: Uses HTTP with Server-Sent Events for real-time communication
 
 When using SSE transport, the server exposes two endpoints:
 - `GET /sse`: SSE endpoint for receiving server messages
@@ -94,18 +88,6 @@ When using SSE transport, the server exposes two endpoints:
     - `languageCode` (string, optional): Language code for results
   - Returns comprehensive details about the place
 
-- [ ] **place-autocomplete** (Coming Soon)
-
-  - Get place predictions based on user input
-  - Input:
-    - `input` (string, required): User input text
-    - `sessionToken` (string, optional): Session token for billing
-    - `offset` (number, optional): Position in the input where autocomplete started
-    - `origin` (object, optional): Origin point for distance ranking
-    - `locationBias` (object, optional): Bias results toward this location
-    - `locationRestriction` (object, optional): Restrict results to this location
-    - `types` (array, optional): Types of place results
-  - Returns place predictions
 
 - [ ] **place-photo** (Coming Soon)
   - Retrieve photos for a place
