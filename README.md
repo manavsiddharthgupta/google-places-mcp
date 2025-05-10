@@ -2,7 +2,51 @@
 
 This MCP server integrates with Google Places API to allow searching, retrieving details, and finding nearby places.
 
-## Components
+## Setup
+
+### Environment Variables
+
+The following environment variables are required:
+
+- `GOOGLE_MAPS_API_KEY`: Your Google Maps API key with Places API access enabled
+- `TRANSPORT_TYPE`: Transport method to use (`stdio` or `sse`)
+- `PORT`: (Optional) Port number for SSE transport (default: 3000)
+
+Create a `.env` file in the root directory with these variables:
+
+```env
+GOOGLE_MAPS_API_KEY=your_api_key_here
+TRANSPORT_TYPE=stdio
+PORT=3000
+```
+
+### Development
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start the development server:
+```bash
+npm run dev
+```
+
+3. Build for production:
+```bash
+npm run build
+```
+
+## Transport Options
+
+The server supports two transport methods:
+
+1. **stdio** (default): Uses standard input/output for communication
+2. **SSE (Server-Sent Events)**: Uses HTTP with Server-Sent Events for real-time communication
+
+When using SSE transport, the server exposes two endpoints:
+- `GET /sse`: SSE endpoint for receiving server messages
+- `POST /messages`: Endpoint for sending messages to the server
 
 ### Tools
 
@@ -11,19 +55,24 @@ This MCP server integrates with Google Places API to allow searching, retrieving
   - Text search for places using Google Places API
   - Input:
     - `textQuery` (string, required): The text query to search for places
+    - `includedType` (string, optional): Restricts results to places matching the specified type
+    - `includePureServiceAreaBusinesses` (boolean, optional): Include businesses without physical location
     - `languageCode` (string, optional): Language code for results (e.g., "en")
-    - `maxResultCount` (number, optional): Maximum number of results to return
     - `locationBias` (object, optional): Bias results toward this location
     - `locationRestriction` (object, optional): Restrict results to this location
-    - `minRating` (number, optional): Minimum rating filter
-    - `openNow` (boolean, optional): Filter for places that are currently open
+    - `pageSize` (number, optional): Number of results per page (1-20)
+    - `pageToken` (string, optional): Token for next page of results
     - `priceLevels` (array, optional): Filter by price levels
-    - `rankPreference` (string, optional): Preference for ranking results
-    - `regionCode` (string, optional): Country/region code (e.g., "us")
-    - `fields` (array, optional): Specific fields to include in the response
+    - `rankPreference` (string, optional): Rank by "RELEVANCE" or "DISTANCE"
+    - `regionCode` (string, optional): Two-character country/region code
+    - `strictTypeFiltering` (boolean, optional): Only return exact type matches
+    - `evOptions` (object, optional): EV charging station filters
+    - `minRating` (number, optional): Minimum rating filter (0-5)
+    - `openNow` (boolean, optional): Filter for places currently open
+    - `fields` (array, optional): Specific fields to include in response
   - Returns matching places with details
 
-- [ ] **places-nearby-search**
+- [ ] **places-nearby-search** (Coming Soon)
 
   - Find places near a specific location
   - Input:
@@ -36,7 +85,7 @@ This MCP server integrates with Google Places API to allow searching, retrieving
     - `fields` (array, optional): Specific fields to include in the response
   - Returns nearby places with details
 
-- [ ] **place-details**
+- [ ] **place-details** (Coming Soon)
 
   - Get detailed information about a specific place
   - Input:
@@ -45,7 +94,7 @@ This MCP server integrates with Google Places API to allow searching, retrieving
     - `languageCode` (string, optional): Language code for results
   - Returns comprehensive details about the place
 
-- [ ] **place-autocomplete**
+- [ ] **place-autocomplete** (Coming Soon)
 
   - Get place predictions based on user input
   - Input:
@@ -58,7 +107,7 @@ This MCP server integrates with Google Places API to allow searching, retrieving
     - `types` (array, optional): Types of place results
   - Returns place predictions
 
-- [ ] **place-photo**
+- [ ] **place-photo** (Coming Soon)
   - Retrieve photos for a place
   - Input:
     - `photoReference` (string, required): Reference from a Place Details response

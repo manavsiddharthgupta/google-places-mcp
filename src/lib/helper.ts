@@ -20,6 +20,7 @@ export async function performPlacesTextSearch(
   }
 
   const apiKey = process.env.GOOGLE_MAPS_API_KEY
+  
   if (!apiKey) {
     throw new HttpError(500, "Google Maps API key not configured")
   }
@@ -44,5 +45,12 @@ export async function performPlacesTextSearch(
       throw new HttpError(error.response?.status || 500, message)
     }
     throw new HttpError(500, "Google Places API error")
+  }
+}
+
+export class GooglePlacesHttpError extends Error {
+  constructor(public statusCode: number, message: string) {
+    super(message)
+    this.name = "GooglePlacesHttpError"
   }
 }

@@ -189,7 +189,6 @@ export const PlacesTextSearchParams = z.object({
 
   fields: z
     .array(z.string())
-    .optional()
     .describe(
       "List of fields to return in the response (passed as $fields parameter or X-Goog-FieldMask header)"
     ),
